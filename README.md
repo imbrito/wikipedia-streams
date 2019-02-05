@@ -1,18 +1,18 @@
 # Wikipedia Streams
 
-Exemplo de uam implementação `stream` de eventos do Wikipedia, postando no Google Gloud Platform.
+Exemplo de uma implementação `stream` de eventos do Wikipedia, postando no Google Gloud Platform.
 
 ## Architecture
 
 ![alt text](./images/diagram.png "Diagram Architecture")
-1. Evento de mudança de informação do wikipedia, gera um arquivo no formato JSON.
+1. Evento de mudança de informação do Wikipedia, gera um arquivo no formato JSON.
 2. A mensagem gerada é lida e postada no Cloud Pub/Sub.
 3. As mensagens postadas no Cloud Pub/Sub, são processadas via Cloud Dataflow e armazenadas no Cloud Storage.
-4. Para cada arquivo materializado no Cloud Storage, o trigger do Cloud Functions realiza o _load_ dos dados no BigQuey. 
+4. Para cada arquivo materializado no Cloud Storage, o trigger do Cloud Functions realiza o _load_ dos dados no BigQuery. 
 
 ## Service Account
 
-No Google Cloud Console, gere e faça _download_ de uma `service account` com permissão de admisnistrador para postar as mensagens no Pub/Sub.
+No Google Cloud Console, gere e faça _download_ de uma `service account` com permissão de administrador para postar as mensagens no Pub/Sub.
 
 ## Setup
  
@@ -26,10 +26,10 @@ Na pasta `setup`, edite o arquivo `project.env` com a definição das variáveis
 
 ## Cloud Storage
 
-No Google Cloud Console, acesse o Cloud Storage, e crie 2 _buckets_:
+No Google Cloud Console, acesse o Cloud Storage, e crie 02 (dois) _buckets_:
 
-1. Crie o bucket aonde as mensagens serão armazenadas: `wikipedia-messages`.
-2. Crie o bucket que servirá para fazer o _deploy_ da _function_: `setup`.
+1. Crie o bucket aonde as mensagens serão armazenadas: `gs://wikipedia-messages`.
+2. Crie o bucket que servirá para fazer o _deploy_ da _function_: `gs://setup`.
 3. Faça _upload_ do arquivo `setup/function.zip` para o bucket: `gs://setup`.
 
 ## Cloud Function
@@ -55,7 +55,7 @@ Faça o _deploy_ da _function_ executando o comando abaixo, via Google Cloud She
 
 ## Cloud Dataflow
 
-No Google Cloud Console, acesse o Cloud Dataflow, e inicie o _template job_ definido como `Cloud Pub/Sub to Text Files on Cloud Storage`, com os seguintes arqgumentos:
+No Google Cloud Console, acesse o Cloud Dataflow, e inicie o _template job_ definido como `Cloud Pub/Sub to Text Files on Cloud Storage`, com os seguintes argumentos:
 
 1. Nome do Job: `wikipedia-stream`.
 2. Input Cloud Pub/Sub topic: `projects/<my-project-id>/topics/wikipedia-stream`.
