@@ -72,6 +72,7 @@ Finalmente, após o fechamento da primeira janela de 5 minutos de processamento 
 
 ## References
 - https://medium.com/google-cloud/import-json-into-bigquery-with-google-cloud-functions-31facea134bf
+- https://wikitech.wikimedia.org/wiki/EventStreams
 - https://www.mediawiki.org/wiki/Manual:RCFeed
 - https://pypi.org/project/sseclient/
 
