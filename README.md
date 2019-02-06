@@ -47,7 +47,9 @@ Faça o _deploy_ da _function_ executando o comando abaixo, via Google Cloud She
     --set-env-vars PROJECT_ID=my-project_id,DATASET_ID=wikipedia,TABLE_ID=change_events
 ```
 
-## Stream
+## Cloud Pub/Sub
+
+Nesse estágio, será executado um _script_ python que escuta alterações no wikipedia e faz upload diretament no Cloud Pub/Sub.
 
 1. Acesse a pasta `stream`.
 2. Instale as dependências: `pip3 install -r requirements.txt`
